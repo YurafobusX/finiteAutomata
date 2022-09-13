@@ -36,10 +36,11 @@ class finiteAutomata {
         return errorCodes::succsess;
     };
 
-
     size_t getCurrentState() {
         return _currentState;
     }
+
+    friend void swap(finiteAutomata& l, finiteAutomata& r);
 
     private:
     size_t _currentState;
