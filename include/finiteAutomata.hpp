@@ -25,17 +25,27 @@ class finiteAutomata {
                     i.transitions[j] = dist(rng);
     };
 
+    finiteAutomata(const finiteAutomata& aut) : 
+        _currentState(aut._currentState),
+        _alphabetSize(aut._alphabetSize),
+        _automataSize(aut._automataSize),
+        _nodes(aut._nodes) {};
+
     errorCodes process(size_t letter) {
         _currentState = _nodes[_currentState].transitions[letter];
         return errorCodes::succsess;
     };
 
-    friend std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r);
-    friend std::istream& operator>> (std::istream& stream, finiteAutomata& r);
-
     size_t getCurrentState() {
         return _currentState;
     }
+
+    finiteAutomata& operator=(finiteAutomata r);
+
+    friend void swap(finiteAutomata& l, finiteAutomata& r);
+    
+    friend std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r);
+    friend std::istream& operator>> (std::istream& stream, finiteAutomata& r);
 
     private:
     size_t _currentState;
