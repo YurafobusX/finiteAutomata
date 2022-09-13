@@ -40,6 +40,8 @@ class finiteAutomata {
         return _currentState;
     }
 
+    finiteAutomata& operator=(finiteAutomata r);
+
     friend void swap(finiteAutomata& l, finiteAutomata& r);
 
     private:
