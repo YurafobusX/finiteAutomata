@@ -43,6 +43,9 @@ class finiteAutomata {
     finiteAutomata& operator=(finiteAutomata r);
 
     friend void swap(finiteAutomata& l, finiteAutomata& r);
+    
+    friend std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r);
+    friend std::istream& operator>> (std::istream& stream, finiteAutomata& r);
 
     private:
     size_t _currentState;
