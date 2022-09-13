@@ -30,6 +30,8 @@ class finiteAutomata {
         return errorCodes::succsess;
     };
 
+    friend std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r);
+    friend std::istream& operator>> (std::istream& stream, finiteAutomata& r);
 
     size_t getCurrentState() {
         return _currentState;
