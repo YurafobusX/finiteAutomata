@@ -12,6 +12,7 @@ std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r) {
 
 std::istream& operator>> (std::istream& stream, finiteAutomata& r) {
     stream >> r._automataSize >> r._alphabetSize;
+    r = finiteAutomata(r._automataSize, r._alphabetSize);
     for (auto i : r._nodes) {
         for (auto j : i.transitions) 
             stream >> j;  
