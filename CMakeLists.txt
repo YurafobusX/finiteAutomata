@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
 
-project(finiteAutomata VERSION 0.0.0 LANGUAGES C CXX)
+project(finiteAutomata VERSION 0.0.1 LANGUAGES C CXX)
 set (CMAKE_CXX_STANDARD 17)
 add_executable(main)
 target_compile_options(main PRIVATE -Werror -pedantic-errors -Wall -Wextra -Wpedantic)
