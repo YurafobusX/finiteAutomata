@@ -3,6 +3,7 @@
 #include <vector>
 #include <random>
 #include <iostream>
+#include <sstream>
 
 enum errorCodes {
     succsess,
