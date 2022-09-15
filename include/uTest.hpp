@@ -24,7 +24,7 @@ class uTest {
                 try {
                     test->run(depth + 1, subOutput);
                     passed++;
-                } catch (std::exception e) {
+                } catch (std::exception& e) {
                 }
                 subOutput << '\n';
             }
@@ -33,7 +33,7 @@ class uTest {
             try {
                 _test();
                 output << '!' << _msg;
-            } catch (std::exception e) {
+            } catch (std::exception& e) {
                 output << '?' << _msg << e.what();
                 throw e;
             }

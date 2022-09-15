@@ -60,7 +60,7 @@ int main() {
 	std::stringstream s;
 	try {
 		r.run();
-	} catch (std::exception e) {
+	} catch (std::exception& e) {
 	} 
 	std::cout << '\n';
 	return 0;
