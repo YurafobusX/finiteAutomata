@@ -2,6 +2,7 @@
 #include <exception>
 #include <stdexcept>
 #include <vector>
+#include <set>
 
 #include "finiteAutomata.hpp"
 #include "uTest.hpp"
@@ -46,12 +47,42 @@ class eqTT : public uTest {
 	}
 };
 
+class inputT : public uTest {
+	void _test() override {
+		std::set<int> a = {1,2};
+		std::vector<int> b(a.begin(), a.end());
+	}
+	public:
+	inputT() : uTest() {
+		_msg = "Проверка на вход: ";
+	}
+};
+
+class outputT : public uTest {
+	void _test() override {
+		std::set<int> a = {1,2};
+		std::vector<int> b(a.begin(), a.end());
+	}
+	public:
+	outputT() : uTest() {
+		_msg = "Провекра на корректный вывод: ";
+	}
+};
+
+class ioTT : public uTest {
+	public:
+	ioTT() : uTest() {
+		_msg = "Блок тестов на ввод/вывод: ";
+		_subTests.emplace_back(new outputT);
+	}
+};
+
 class rootT : public uTest {
 	public:
 	rootT() : uTest() {
 		_msg = "Начало тестов: ";
 		_subTests.emplace_back(new eqTT());
-		_subTests.emplace_back(new swapT());
+		_subTests.emplace_back(new ioTT());
 	}
 };
 
