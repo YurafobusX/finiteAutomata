@@ -19,7 +19,7 @@ class copyConstrT : public uTest {
 
 class swapT : public uTest {
 	void _test() override {
-		throw std::runtime_error("test");
+		std::vector<int>();
 	}
 	public:
 	swapT() {
@@ -49,12 +49,17 @@ class eqTT : public uTest {
 
 class inputT : public uTest {
 	void _test() override {
-		std::set<int> a = {1,2};
-		std::vector<int> b(a.begin(), a.end());
+		std::stringstream s("2 1 1 0");
+		finiteAutomata a;
+		s >> a;
+		if (a.getAutomataSize() != 2) throw std::runtime_error("Неверный размер автомата");
+		if (a.getAlphabetSize() != 1) throw std::runtime_error("Неверный размер алфавита");
+		if (a.process(0) != 1 ) throw std::runtime_error(std::to_string(a.process(0)));
+		
 	}
 	public:
 	inputT() : uTest() {
-		_msg = "Проверка на вход: ";
+		_msg = "Проверка на ввод ";
 	}
 };
 
@@ -65,7 +70,7 @@ class outputT : public uTest {
 	}
 	public:
 	outputT() : uTest() {
-		_msg = "Провекра на корректный вывод: ";
+		_msg = "Провекра на корректный вывод ";
 	}
 };
 
@@ -74,6 +79,7 @@ class ioTT : public uTest {
 	ioTT() : uTest() {
 		_msg = "Блок тестов на ввод/вывод: ";
 		_subTests.emplace_back(new outputT);
+		_subTests.emplace_back(new inputT);
 	}
 };
 
@@ -81,8 +87,8 @@ class rootT : public uTest {
 	public:
 	rootT() : uTest() {
 		_msg = "Начало тестов: ";
-		_subTests.emplace_back(new eqTT());
-		_subTests.emplace_back(new ioTT());
+		//_subTests.emplace_back(new eqTT());
+		//_subTests.emplace_back(new ioTT());
 	}
 };
 
@@ -90,7 +96,7 @@ int main() {
 	rootT r;
 	std::stringstream s;
 	try {
-		r.run();
+		r.run(0, s);
 	} catch (std::exception& e) {
 	} 
 	std::cout << '\n';
