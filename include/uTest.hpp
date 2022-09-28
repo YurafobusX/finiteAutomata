@@ -28,6 +28,7 @@ class uTest {
                 }
                 subOutput << '\n';
             }
+            subOutput << std::flush;
             output << passed << '\\' << total << ": " << subOutput.str();
         } else {
             try {
@@ -42,6 +43,6 @@ class uTest {
     } 
     protected:
     virtual void _test() {}; //бросить исключение если что-то не так
-    std::vector<std::unique_ptr<uTest>> _subTests = {};
+    std::vector<std::unique_ptr<uTest>> _subTests;
     std::string _msg;
 };
