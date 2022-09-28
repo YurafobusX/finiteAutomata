@@ -32,3 +32,79 @@ finiteAutomata& finiteAutomata::operator=(finiteAutomata r) {
     swap(*this, r);
     return *this;
 }
+
+void finiteAutomata::setTransition(size_t node, size_t letter, size_t targetNode) {
+    if (node >= _automataSize) throw std::out_of_range("node doesn't exists in automata");
+    if (letter >= _alphabetSize) throw std::out_of_range("letter doesn't exists in automata");
+    if (targetNode >= _automataSize) throw std::out_of_range("targetNode doesn't exists in automata");
+    _transitions[node * _alphabetSize + letter] = targetNode; 
+}
+
+void finiteAutomata::setCurrentState(size_t state) {
+    if (state >= _automataSize) throw std::out_of_range("state doesn't exists in automata");
+    _currentState = state;
+}
+
+std::vector<size_t> finiteAutomata::getTransitions() const {
+    return _transitions;
+}
+
+size_t finiteAutomata::getTransition(size_t node, size_t letter) const {
+    if (node >= _automataSize) throw std::out_of_range("node doesn't exists in automata");
+    if (letter >= _alphabetSize) throw std::out_of_range("letter doesn't exists in automata");
+    return _transitions[node * _alphabetSize + letter];
+}
+
+size_t finiteAutomata::process(size_t letter) {
+    return _currentState = getTransition(_currentState, letter);
+};
+
+    
+size_t finiteAutomata::getAlphabetSize() const{
+    return _alphabetSize;
+};
+
+size_t finiteAutomata::getAutomataSize() const{
+    return _automataSize;
+};
+
+finiteAutomata::finiteAutomata(size_t automataSize, size_t alphabetSize, bool isRand) : 
+    _currentState(0),
+    _alphabetSize(alphabetSize),
+    _automataSize(automataSize),
+    _transitions(alphabetSize * automataSize, 0) {
+        if (!isRand) return;
+        std::random_device dev;
+        std::mt19937 rng(dev());
+        std::uniform_int_distribution<std::mt19937::result_type> dist(0, _automataSize - 1);    
+        for (auto& i : _transitions)
+            i = dist(rng);
+    };
+
+finiteAutomata::finiteAutomata(const finiteAutomata& aut) : 
+    _currentState(aut._currentState),
+    _alphabetSize(aut._alphabetSize),
+    _automataSize(aut._automataSize),
+    _transitions(aut._transitions) {};
+
+finiteAutomata::finiteAutomata(size_t automataSize, size_t alphabetSize, std::vector<size_t>::iterator first, std::vector<size_t>::iterator last) : 
+    _currentState(0),
+    _alphabetSize(alphabetSize),
+    _automataSize(automataSize) {
+        size_t size = last - first;
+        if (size < _alphabetSize * _automataSize) {
+            _transitions = std::vector<size_t>(alphabetSize * automataSize, 0);
+            throw std::out_of_range("not enough elements"); 
+        } else
+            _transitions = std::vector<size_t>(first, last);
+    };
+
+
+/*template<class Iter>
+    finiteAutomata(Iter bgn, Iter end) : finiteAutomata((size_t)*(bgn++), (size_t)*(bgn++)) {
+        while (bgn != end) {
+            (void)bgn;
+            (void)end;
+            ++bgn;
+        }
+    };*/
