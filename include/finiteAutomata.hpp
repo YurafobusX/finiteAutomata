@@ -16,6 +16,7 @@ class finiteAutomata {
     finiteAutomata(size_t automataSize = 0, size_t alphabetSize = 0, bool isRand = false);
     finiteAutomata(const finiteAutomata& aut);
     finiteAutomata(size_t automataSize, size_t alphabetSize, std::vector<size_t>::iterator first, std::vector<size_t>::iterator last);
+    finiteAutomata(size_t automataSize, size_t alphabetSize, std::vector<size_t> tr);
 
     //блок функций
     size_t process(size_t letter);

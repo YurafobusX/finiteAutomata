@@ -83,12 +83,28 @@ class ioTT : public uTest {
 	}
 };
 
+class syncT : public uTest {
+	void _test() override {
+		std::vector<size_t> t = {1, 0, 3, 2};
+		finiteAutomata a(4, 1, t.begin(), t.end());
+		if (a.isSync()) throw std::runtime_error("Неверный размер автомата");
+		//if (a.getAlphabetSize() != 1) throw std::runtime_error("Неверный размер алфавита");
+		//if (a.process(0) != 1 ) throw std::runtime_error(std::to_string(a.process(0)));
+		
+	}
+	public:
+	syncT() : uTest() {
+		_msg = "Проверка на синхонизированность ";
+	}
+};
+
 class rootT : public uTest {
 	public:
 	rootT() : uTest() {
 		_msg = "Начало тестов: ";
 		_subTests.emplace_back(new eqTT());
 		_subTests.emplace_back(new ioTT());
+		_subTests.emplace_back(new syncT());
 	}
 };
 

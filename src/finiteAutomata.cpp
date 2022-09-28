@@ -143,6 +143,7 @@ bool finiteAutomata::isReachable(std::vector<size_t> from, std::vector<size_t> t
                 qed.push(i);
                 isReach[i] = true;
             }
+            qed.pop();
         }
     }
     if (std::find_if(from.begin(), from.end(), [&](size_t i){return !isReach[i];}) == from.end()) 
