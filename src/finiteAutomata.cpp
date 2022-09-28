@@ -150,3 +150,21 @@ bool finiteAutomata::isReachable(std::vector<size_t> from, std::vector<size_t> t
     else 
         return false;
 }
+
+bool finiteAutomata::isSync() const{
+    std::vector<size_t> from, to;
+    std::vector<size_t> transitions;
+    auto toLeniar = [&](size_t i, size_t j){return i*getAutomataSize() + j;};
+    for (size_t i = 0; i < getAutomataSize(); i++) 
+        for (size_t j = 0; j < getAutomataSize(); j++) {
+            if (j == i) {
+                to.push_back(toLeniar(i, j));
+            } else {
+                from.push_back(toLeniar(i, j));
+            }
+            for (size_t k = 0; k < getAlphabetSize(); k++)
+                    transitions.push_back(toLeniar(getTransition(i,k), getTransition(j,k)));
+        }
+    finiteAutomata tmp(getAutomataSize() * getAutomataSize(), getAlphabetSize(), transitions.begin(), transitions.end());
+    return tmp.isReachable(from, to);
+}
