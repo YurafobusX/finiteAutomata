@@ -87,8 +87,8 @@ class rootT : public uTest {
 	public:
 	rootT() : uTest() {
 		_msg = "Начало тестов: ";
-		//_subTests.emplace_back(new eqTT());
-		//_subTests.emplace_back(new ioTT());
+		_subTests.emplace_back(new eqTT());
+		_subTests.emplace_back(new ioTT());
 	}
 };
 
@@ -96,7 +96,7 @@ int main() {
 	rootT r;
 	std::stringstream s;
 	try {
-		r.run(0, s);
+		r.run();
 	} catch (std::exception& e) {
 	} 
 	std::cout << '\n';
