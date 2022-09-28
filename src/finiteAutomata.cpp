@@ -140,13 +140,13 @@ bool finiteAutomata::isReachable(std::vector<size_t> from, std::vector<size_t> t
         isReach[i] = true;
     }
     while (qed.size() != 0) {
-        for (auto i : _parentTransitions[qed.back()]) {
+        for (auto i : _parentTransitions[qed.front()]) {
             if (!isReach[i]) {
                 qed.push(i);
                 isReach[i] = true;
             }
-            qed.pop();
         }
+        qed.pop();
     }
     if (std::find_if(from.begin(), from.end(), [&](size_t i){return !isReach[i];}) == from.end()) 
         return true;
