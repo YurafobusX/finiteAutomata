@@ -26,6 +26,8 @@ void swap(finiteAutomata& l, finiteAutomata& r) {
     std::swap(l._alphabetSize, r._alphabetSize);
     std::swap(l._currentState, r._currentState);
     std::swap(l._transitions, r._transitions);
+    std::swap(l._isParentTransitionsCorrect, r._isParentTransitionsCorrect);
+    std::swap(l._parentTransitions, r._parentTransitions);
 }
 
 finiteAutomata& finiteAutomata::operator=(finiteAutomata r) {
@@ -38,6 +40,7 @@ void finiteAutomata::setTransition(size_t node, size_t letter, size_t targetNode
     if (letter >= _alphabetSize) throw std::out_of_range("letter doesn't exists in automata");
     if (targetNode >= _automataSize) throw std::out_of_range("targetNode doesn't exists in automata");
     _transitions[node * _alphabetSize + letter] = targetNode; 
+    _isParentTransitionsCorrect = false;
 }
 
 void finiteAutomata::setCurrentState(size_t state) {
@@ -85,7 +88,9 @@ finiteAutomata::finiteAutomata(const finiteAutomata& aut) :
     _currentState(aut._currentState),
     _alphabetSize(aut._alphabetSize),
     _automataSize(aut._automataSize),
-    _transitions(aut._transitions) {};
+    _transitions(aut._transitions),
+    _parentTransitions(aut._parentTransitions),
+    _isParentTransitionsCorrect(aut._isParentTransitionsCorrect) {};
 
 finiteAutomata::finiteAutomata(size_t automataSize, size_t alphabetSize, std::vector<size_t>::iterator first, std::vector<size_t>::iterator last) : 
     _currentState(0),

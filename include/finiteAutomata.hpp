@@ -33,8 +33,13 @@ class finiteAutomata {
     friend std::istream& operator>> (std::istream& stream, finiteAutomata& r);
 
     private:
+    //блок приватных функций
+
+    //Поля
     size_t _currentState;
     size_t _alphabetSize;
     size_t _automataSize;
     std::vector<size_t> _transitions;
+    std::vector<std::vector<size_t>> _parentTransitions = {};
+    bool _isParentTransitionsCorrect = false;
 };
