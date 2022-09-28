@@ -108,6 +108,8 @@ finiteAutomata::finiteAutomata(size_t automataSize, size_t alphabetSize, std::ve
             _transitions = std::vector<size_t>(first, last);
     };
 
+finiteAutomata::finiteAutomata(size_t automataSize, size_t alphabetSize, std::vector<size_t> tr) : finiteAutomata(automataSize, alphabetSize, tr.begin(), tr.end()) {};
+
 
 /*template<class Iter>
     finiteAutomata(Iter bgn, Iter end) : finiteAutomata((size_t)*(bgn++), (size_t)*(bgn++)) {
