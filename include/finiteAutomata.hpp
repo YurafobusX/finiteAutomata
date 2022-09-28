@@ -70,6 +70,7 @@ class finiteAutomata {
 
     void setCurrentState(size_t state) {
         if (state >= _automataSize) throw std::out_of_range("state doesn't exists in automata");
+        _currentState = state;
     }
 
     std::vector<size_t> getTransitions() const {
@@ -85,7 +86,7 @@ class finiteAutomata {
     void setTransition(size_t node, size_t letter, size_t targetNode) {
         if (node >= _automataSize) throw std::out_of_range("node doesn't exists in automata");
         if (letter >= _alphabetSize) throw std::out_of_range("letter doesn't exists in automata");
-        if (targetNode >= _alphabetSize) throw std::out_of_range("targetNode doesn't exists in automata");
+        if (targetNode >= _automataSize) throw std::out_of_range("targetNode doesn't exists in automata");
         _transitions[node * _alphabetSize + letter] = targetNode; 
     }
 

@@ -13,10 +13,13 @@ std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r) {
 std::istream& operator>> (std::istream& stream, finiteAutomata& r) {
     stream >> r._automataSize >> r._alphabetSize;
     r = finiteAutomata(r._automataSize, r._alphabetSize);
-    //for (auto i : r._nodes) {
-    //   for (auto j : i.transitions) 
-    //        stream >> j;  
-    //}
+    for (size_t i = 0; i < r._automataSize; i++) {
+        for (size_t j = 0; j < r._alphabetSize; j++) {
+            size_t b;
+            stream >> b;
+            r.setTransition(i, j, b);
+        }
+    }
     return stream;
 }
 
