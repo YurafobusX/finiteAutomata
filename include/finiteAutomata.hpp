@@ -21,6 +21,7 @@ class finiteAutomata {
     size_t process(size_t letter);
         //Провертяет достижимость каждого состояния из from до какого-нибудь из to
     bool isReachable(std::vector<size_t> from, std::vector<size_t> to);
+    bool isSync() const;
 
     //блок гетеров и сетеров
     size_t getAlphabetSize() const;
