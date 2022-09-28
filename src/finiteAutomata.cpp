@@ -1,5 +1,7 @@
 #include "finiteAutomata.hpp"
 #include <cstddef>
+#include <numeric>
+#include <queue>
 #include <vector>
 
 std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r) {
@@ -125,4 +127,26 @@ void finiteAutomata::_calculateParentTransitions() {
         }
     }
     _isParentTransitionsCorrect = true;
+}
+
+bool finiteAutomata::isReachable(std::vector<size_t> from, std::vector<size_t> to) {
+    std::queue<size_t> qed;
+    std::vector<bool> isReach(getAutomataSize(), false);
+    if (!_isParentTransitionsCorrect) _calculateParentTransitions();
+    for (auto i : to) {
+        qed.push(i);
+        isReach[i] = true;
+    }
+    while (qed.size() != 0) {
+        for (auto i : _parentTransitions[qed.back()]) {
+            if (!isReach[i]) {
+                qed.push(i);
+                isReach[i] = true;
+            }
+        }
+    }
+    if (std::find_if(from.begin(), from.end(), [&](size_t i){return !isReach[i];}) == from.end()) 
+        return true;
+    else 
+        return false;
 }
