@@ -34,6 +34,7 @@ class finiteAutomata {
 
     private:
     //блок приватных функций
+    void _calculateParentTransitions();
 
     //Поля
     size_t _currentState;

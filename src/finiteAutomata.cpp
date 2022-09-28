@@ -1,4 +1,6 @@
 #include "finiteAutomata.hpp"
+#include <cstddef>
+#include <vector>
 
 std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r) {
     stream << r._automataSize << ' ' << r._alphabetSize << '\n';
@@ -113,3 +115,14 @@ finiteAutomata::finiteAutomata(size_t automataSize, size_t alphabetSize, std::ve
             ++bgn;
         }
     };*/
+
+
+void finiteAutomata::_calculateParentTransitions() {
+    _parentTransitions = std::vector<std::vector<size_t>>(_automataSize, std::vector<size_t>(0, 0));
+    for (size_t i = 0; i < _automataSize; i++) {
+        for (size_t j = 0; j < _alphabetSize; j++) {
+            _parentTransitions[getTransition(i, j)].push_back(i);
+        }
+    }
+    _isParentTransitionsCorrect = true;
+}
