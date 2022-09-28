@@ -10,11 +10,12 @@
 class finiteAutomata {
     public:
     //блок конструкторов
-    finiteAutomata(size_t automataSize = 0, size_t alphabetSize = 0) : 
+    finiteAutomata(size_t automataSize = 0, size_t alphabetSize = 0, bool isRand = false) : 
         _currentState(0),
         _alphabetSize(alphabetSize),
         _automataSize(automataSize),
         _transitions(alphabetSize * automataSize, 0) {
+        if (!isRand) return;
         std::random_device dev;
         std::mt19937 rng(dev());
         std::uniform_int_distribution<std::mt19937::result_type> dist(0, _automataSize - 1);    
