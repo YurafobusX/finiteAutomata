@@ -1,0 +1,3 @@
+[submodule "tests/libs/test"]
+	path = tests/libs/test
+	url = https://github.com/boostorg/test.git
