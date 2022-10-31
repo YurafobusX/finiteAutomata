@@ -119,6 +119,9 @@ int main() {
 		r.run();
 	} catch (std::exception& e) {
 	} 
+	finiteAutomata k;
+	std::cin >> k;
+	std::cout << '\n' << k.isSync();
 	std::cout << '\n';
 	return 0;
 } 
