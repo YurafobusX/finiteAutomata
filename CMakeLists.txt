@@ -18,6 +18,7 @@ include_directories(include)
 target_sources(finiteAutomata PRIVATE ${sources} ${includes})
 
 if(FA_BUILD_TESTS)
+    enable_testing()
     add_subdirectory(tests)
 endif()
 
