@@ -83,12 +83,32 @@ class ioTT : public uTest {
 	}
 };
 
+class syncT : public uTest {
+	void _test() override {
+		finiteAutomata a(4, 1, {1, 0, 3, 2});
+		finiteAutomata b(2, 1, {0, 0});
+		finiteAutomata c(6, 2, {2, 3, 0, 4, 1, 5, 5, 0, 3, 1, 4, 2});
+		finiteAutomata d(6, 2, {3, 2, 0, 4, 1, 5, 5, 0, 3, 1, 4, 2});
+		if (a.isSync()) throw std::runtime_error("a");
+		if (!b.isSync()) throw std::runtime_error("b");
+		if (c.isSync()) throw std::runtime_error("c");
+		if (!d.isSync()) throw std::runtime_error("b");
+		
+		
+	}
+	public:
+	syncT() : uTest() {
+		_msg = "Проверка на синхонизированность ";
+	}
+};
+
 class rootT : public uTest {
 	public:
 	rootT() : uTest() {
 		_msg = "Начало тестов: ";
 		_subTests.emplace_back(new eqTT());
 		_subTests.emplace_back(new ioTT());
+		_subTests.emplace_back(new syncT());
 	}
 };
 
@@ -99,6 +119,9 @@ int main() {
 		r.run();
 	} catch (std::exception& e) {
 	} 
+	finiteAutomata k;
+	std::cin >> k;
+	std::cout << '\n' << k.isSync();
 	std::cout << '\n';
 	return 0;
 } 
