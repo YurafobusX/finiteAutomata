@@ -6,93 +6,32 @@
 
 #define BOOST_TEST_MODULE your_test_module
 #include <boost/test/included/unit_test.hpp>
-/*#include "finiteAutomata.hpp"
-#include "uTest.hpp"
+#include "finiteAutomata.hpp"
 
-class copyConstrT : public uTest {
-	void _test() override {
-		
-	}
-	public:
-	copyConstrT() {
-		_msg = "Проверка конструктора копирования: ";
-	}
-};
+BOOST_AUTO_TEST_CASE( Проверка_конструктора_копирования ) {
+	
+}
 
-class swapT : public uTest {
-	void _test() override {
-		std::vector<int>();
-	}
-	public:
-	swapT() {
-		_msg = "Проверка функции swap: ";
-	}
-};
+BOOST_AUTO_TEST_CASE( Проверка_функции_swap ) {
+	
+}
 
-class eqT : public uTest {
-	void _test() override {
-		
-	}
-	public:
-	eqT() {
-		_msg = "Проверка оператора равентва: ";
-	}
-};
+BOOST_AUTO_TEST_CASE( Проверка_оператора_равентва ) {
+	
+}
 
-class eqTT : public uTest {
-	public:
-	eqTT() : uTest() {
-		_msg = "Блок проверки присваиваний: ";
-		_subTests.emplace_back(new eqT());
-		_subTests.emplace_back(new swapT());
-		_subTests.emplace_back(new copyConstrT());
-	}
-};
-
-class inputT : public uTest {
-	void _test() override {
-		std::stringstream s("2 1 1 0");
+BOOST_AUTO_TEST_CASE( Проверка_на_ввод ) {
+	std::stringstream s("2 1 1 0");
 		finiteAutomata a;
 		s >> a;
-		if (a.getAutomataSize() != 2) throw std::runtime_error("Неверный размер автомата");
-		if (a.getAlphabetSize() != 1) throw std::runtime_error("Неверный размер алфавита");
-		if (a.process(0) != 1 ) throw std::runtime_error(std::to_string(a.process(0)));
-		
-	}
-	public:
-	inputT() : uTest() {
-		_msg = "Проверка на ввод ";
-	}
-};
+		BOOST_TEST(a.getAutomataSize() == 2);
+		BOOST_TEST(a.getAlphabetSize() == 1);
+		BOOST_TEST(a.process(0) == 1 );
+}
 
-class outputT : public uTest {
-	void _test() override {
-		std::set<int> a = {1,2};
-		std::vector<int> b(a.begin(), a.end());
-	}
-	public:
-	outputT() : uTest() {
-		_msg = "Провекра на корректный вывод ";
-	}
-};
-
-class ioTT : public uTest {
-	public:
-	ioTT() : uTest() {
-		_msg = "Блок тестов на ввод/вывод: ";
-		_subTests.emplace_back(new outputT);
-		_subTests.emplace_back(new inputT);
-	}
-};
-
-class rootT : public uTest {
-	public:
-	rootT() : uTest() {
-		_msg = "Начало тестов: ";
-		_subTests.emplace_back(new eqTT());
-		_subTests.emplace_back(new ioTT());
-	}
-};*/
+BOOST_AUTO_TEST_CASE( Провекра_на_корректный_вывод ) {
+	
+}
 
 BOOST_AUTO_TEST_CASE( your_test_case ) {
     std::vector<int> a{1, 2};
