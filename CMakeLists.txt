@@ -8,8 +8,8 @@ add_library(finiteAutomata STATIC)
 
 target_compile_options(finiteAutomata PRIVATE -Werror -pedantic-errors -Wall -Wextra -Wpedantic)
 
-option(FA_BUILD_TESTS "Build tests" ON)
-option(FA_BUILD_EXAMPLE "Build example" ON)
+option(FA_BUILD_TESTS "Build tests" OFF)
+option(FA_BUILD_EXAMPLE "Build example" OFF)
 
 file(GLOB sources "src/*.cpp")
 file(GLOB includes "include/*.hpp")

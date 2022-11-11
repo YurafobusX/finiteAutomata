@@ -9,6 +9,7 @@
 #include <queue>
 #include <set>
 #include <algorithm>
+#include <numeric>
 
 class finiteAutomata {
     public:

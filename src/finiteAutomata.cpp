@@ -1,8 +1,4 @@
 #include "finiteAutomata.hpp"
-#include <cstddef>
-#include <numeric>
-#include <queue>
-#include <vector>
 
 std::ostream& operator<< (std::ostream& stream, const finiteAutomata& r) {
     stream << r._automataSize << ' ' << r._alphabetSize << '\n';
