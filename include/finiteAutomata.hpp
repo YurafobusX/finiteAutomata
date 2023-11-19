@@ -11,6 +11,8 @@
 #include <algorithm>
 #include <numeric>
 
+#include "permutation.hpp"
+
 class finiteAutomata {
     public:
     //блок конструкторов

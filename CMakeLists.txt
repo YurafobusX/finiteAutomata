@@ -15,7 +15,7 @@ file(GLOB sources "src/*.cpp")
 file(GLOB includes "include/*.hpp")
 include_directories(include)
 
-target_sources(finiteAutomata PRIVATE ${sources} ${includes})
+target_sources(finiteAutomata PRIVATE ${sources})
 
 if(FA_BUILD_TESTS)
     enable_testing()
